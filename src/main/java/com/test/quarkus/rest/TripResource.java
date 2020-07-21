@@ -23,6 +23,7 @@ public class TripResource {
 	@POST
 	@Transactional
 	@Path("/bookTrip")
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response bookTrip(Trip trip) {
 		trip.persist();
 		return Response.ok(trip).status(201).build();
