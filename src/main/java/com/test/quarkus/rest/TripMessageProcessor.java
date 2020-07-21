@@ -14,6 +14,11 @@ public class TripMessageProcessor {
     @Merge
     public  void process(String paymentString) {
 		System.out.println("Payment status string is :" + paymentString);
-	
+		JSONObject jo = (JSONObject)new JSONParser().parse(paymentString);
+	    	
+	    	UUID tripId = jo.get("tripId");
+	        Trip trip = Trip.findById(tripId);
+	    	String paymentstatus = (String)jo.get("status");
+	    	trip.update("tripStatus",  paymentstatus);
 	}
 }
