@@ -27,8 +27,8 @@ public class TripMessageProcessor {
 		JSONObject jo = (JSONObject)new JSONParser().parse(paymentString);
 			String tripId = (String)jo.get("tripId");
 	    	System.out.println("Trip Id is " + tripId);
-	    	/*UUID tripUuid = UUID.fromString(tripId);
-	        Trip trip = Trip.find("id=?1",  tripUuid).firstResult();
+	    	UUID tripUuid = UUID.fromString(tripId);
+	        /*Trip trip = Trip.find("id=?1",  tripUuid).firstResult();
 			System.out.println("Trip Details are :" + trip.getTripId());
 		Jsonb jsonb = JsonbBuilder.create();
 		String result = jsonb.toJson(trip);
@@ -43,7 +43,7 @@ public class TripMessageProcessor {
 		 executor.runAsync(threadContext.contextualRunnable(()->{
         try {
 		
-		 Trip.update("tripStatus=?1 where id=?2",  paymentstatus, tripId);
+		 Trip.update("tripStatus=?1 where id=?2",  paymentstatus, tripUuid);
 		 
 		 
 	   } catch(Exception e) {
