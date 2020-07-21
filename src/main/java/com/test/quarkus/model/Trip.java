@@ -19,11 +19,18 @@ public class Trip extends PanacheEntityBase {
     String userId;
     Date tripBookingDate;
     String tripType; //one-way, round-trip or multi-city
+    String tripStatus;
 
     public UUID getTripId() {
         return this.id;
     }
+    public String getTripStatus() {
+		return this.tripStatus;
+	}
 
+    public void setTripStatus(String tripStatus) {
+		this.tripStatus = tripStatus;
+	}
     public String getUserId() {
 		return this.userId;
 	}
