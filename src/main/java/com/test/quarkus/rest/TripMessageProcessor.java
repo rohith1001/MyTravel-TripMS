@@ -22,7 +22,7 @@ public class TripMessageProcessor {
 	    	try{
 		System.out.println("Payment status string is :" + paymentString);
 		JSONObject jo = (JSONObject)new JSONParser().parse(paymentString);
-	    	
+	    	System.out.println("Trip Id is " + jo.get("tripId"));
 	    	UUID tripId = UUID.fromString(((String)jo.get("tripId")));
 	        Trip trip = Trip.findById(tripId);
 	    	String paymentstatus = (String)jo.get("status");
