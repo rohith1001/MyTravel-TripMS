@@ -26,14 +26,14 @@ public class TripMessageProcessor {
 		JSONObject jo = (JSONObject)new JSONParser().parse(paymentString);
 			String tripId = (String)jo.get("tripId");
 	    	System.out.println("Trip Id is " + tripId);
-	    	UUID tripUuid = UUID.fromString(tripId);
+	    	/*UUID tripUuid = UUID.fromString(tripId);
 	        Trip trip = Trip.find("id=?1",  tripUuid).firstResult();
 			System.out.println("Trip Details are :" + trip.getTripId());
 		Jsonb jsonb = JsonbBuilder.create();
 		String result = jsonb.toJson(trip);
 		System.out.println("Trip Details are :" + result);
-	    	String paymentstatus = (String)jo.get("status");
-	    	trip.update("tripStatus",  paymentstatus);
+	    	String paymentstatus = (String)jo.get("status");*/
+	    	trip.update("tripStatus=?1 where id=?2",  paymentstatus, tripId);
 		}catch(org.json.simple.parser.ParseException e){
 		e.printStackTrace();
 		}
