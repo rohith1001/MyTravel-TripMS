@@ -26,10 +26,10 @@ public class TripMessageProcessor {
 		JSONObject jo = (JSONObject)new JSONParser().parse(paymentString);
 	    	System.out.println("Trip Id is " + jo.get("tripId"));
 	    	UUID tripId = UUID.fromString(((String)jo.get("tripId")));
-	        Trip trip = Trip.findById(tripId);
+	        Trip trip = Trip.findById(jo.get("tripId"));
 		Jsonb jsonb = JsonbBuilder.create();
 		String result = jsonb.toJson(trip);
-		System.out.println("Trip Details are :" + trip);
+		System.out.println("Trip Details are :" + result);
 	    	String paymentstatus = (String)jo.get("status");
 	    	trip.update("tripStatus",  paymentstatus);
 		}catch(org.json.simple.parser.ParseException e){
