@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.*; 
 import com.test.quarkus.model.Trip;
 import java.util.UUID;
+import io.smallrye.reactive.messaging.annotations.Blocking;
 
 @ApplicationScoped
 public class TripMessageProcessor {
