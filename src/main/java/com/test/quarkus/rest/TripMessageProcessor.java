@@ -31,9 +31,26 @@ public class TripMessageProcessor {
 		Jsonb jsonb = JsonbBuilder.create();
 		String result = jsonb.toJson(trip);
 		System.out.println("Trip Details are :" + result);*/
+			
 	    	String paymentstatus = (String)jo.get("status");
 		System.out.println("Payment Status is " + paymentstatus);
-	    	Trip.update("tripStatus=?1 where id=?2",  paymentstatus, tripId);
+			ManagedExecutor executor = ManagedExecutor.builder() .maxAsync(5) .propagated(ThreadContext.CDI, ThreadContext.TRANSACTION) .build();
+		 ThreadContext threadContext = ThreadContext.builder() .propagated(ThreadContext.CDI, ThreadContext.TRANSACTION) .build();
+		
+    
+		 executor.runAsync(threadContext.contextualRunnable(()->{
+        try {
+		
+		 Trip.update("tripStatus=?1 where id=?2",  paymentstatus, tripId);
+		 
+		 
+	   } catch(Exception e) {
+            System.out.println("Something wrong happened !!!");
+		e.printStackTrace();
+        }
+	
+     }));
+	    	
 		}catch(org.json.simple.parser.ParseException e){
 		e.printStackTrace();
 		}
