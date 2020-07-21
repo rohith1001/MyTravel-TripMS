@@ -14,10 +14,11 @@ import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
 import org.eclipse.microprofile.context.ManagedExecutor;
 import org.eclipse.microprofile.context.ThreadContext;
+import javax.transaction.UserTransaction;
 
 @ApplicationScoped
 public class TripMessageProcessor {
-
+	@Inject UserTransaction transaction;
 	
     @Incoming("paymentstatus")
     @Merge
@@ -43,8 +44,9 @@ public class TripMessageProcessor {
 		 executor.runAsync(threadContext.contextualRunnable(()->{
         try {
 		
+		transaction.begin();
 		 Trip.update("tripStatus=?1 where id=?2",  paymentstatus, tripUuid);
-		 
+		 transaction.commit();
 		 
 	   } catch(Exception e) {
             System.out.println("Something wrong happened !!!");
