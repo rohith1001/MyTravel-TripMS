@@ -17,6 +17,7 @@ public class TripMessageProcessor {
     @Incoming("paymentstatus")
     @Merge
     public  void process(String paymentString) {
+	    	try{
 		System.out.println("Payment status string is :" + paymentString);
 		JSONObject jo = (JSONObject)new JSONParser().parse(paymentString);
 	    	
@@ -24,5 +25,8 @@ public class TripMessageProcessor {
 	        Trip trip = Trip.findById(tripId);
 	    	String paymentstatus = (String)jo.get("status");
 	    	trip.update("tripStatus",  paymentstatus);
+		}catch(org.json.simple.parser.ParseException e){
+		e.printStackTrace();
+		}
 	}
 }
