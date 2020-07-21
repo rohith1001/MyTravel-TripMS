@@ -12,6 +12,8 @@ import java.util.UUID;
 import io.smallrye.reactive.messaging.annotations.Blocking;
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
+import org.eclipse.microprofile.context.ManagedExecutor;
+import org.eclipse.microprofile.context.ThreadContext;
 
 @ApplicationScoped
 public class TripMessageProcessor {
