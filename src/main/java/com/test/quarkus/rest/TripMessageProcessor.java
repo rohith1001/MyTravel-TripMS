@@ -20,7 +20,7 @@ public class TripMessageProcessor {
 		System.out.println("Payment status string is :" + paymentString);
 		JSONObject jo = (JSONObject)new JSONParser().parse(paymentString);
 	    	
-	    	UUID tripId = jo.get("tripId");
+	    	UUID tripId = UUID.fromString(((String)jo.get("tripId"));
 	        Trip trip = Trip.findById(tripId);
 	    	String paymentstatus = (String)jo.get("status");
 	    	trip.update("tripStatus",  paymentstatus);
