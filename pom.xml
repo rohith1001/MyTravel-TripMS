@@ -57,6 +57,10 @@
       <artifactId>quarkus-hibernate-orm-panache</artifactId>
       <version>1.6.0.Final</version>
     </dependency>
+    <dependency>
+    <groupId>io.quarkus</groupId>
+    <artifactId>quarkus-smallrye-reactive-messaging-kafka</artifactId>
+   </dependency>
   </dependencies>
  <build>
     <plugins>
