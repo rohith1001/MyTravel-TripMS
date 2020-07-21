@@ -31,9 +31,9 @@ public class TripMessageProcessor {
 			System.out.println("Trip Details are :" + trip.getTripId());
 		Jsonb jsonb = JsonbBuilder.create();
 		String result = jsonb.toJson(trip);
-		System.out.println("Trip Details are :" + result);
-	    	String paymentstatus = (String)jo.get("status");*/
-	    	trip.update("tripStatus=?1 where id=?2",  paymentstatus, tripId);
+		System.out.println("Trip Details are :" + result);*/
+	    	String paymentstatus = (String)jo.get("status");
+	    	Trip.update("tripStatus=?1 where id=?2",  paymentstatus, tripId);
 		}catch(org.json.simple.parser.ParseException e){
 		e.printStackTrace();
 		}
