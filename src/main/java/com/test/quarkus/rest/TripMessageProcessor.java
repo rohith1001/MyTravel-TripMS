@@ -16,6 +16,7 @@ public class TripMessageProcessor {
 	
     @Incoming("paymentstatus")
     @Merge
+    @Blocking
     public  void process(String paymentString) {
 	    	try{
 		System.out.println("Payment status string is :" + paymentString);
