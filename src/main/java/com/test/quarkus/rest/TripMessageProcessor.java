@@ -15,6 +15,7 @@ import javax.json.bind.JsonbBuilder;
 import org.eclipse.microprofile.context.ManagedExecutor;
 import org.eclipse.microprofile.context.ThreadContext;
 import javax.transaction.UserTransaction;
+import javax.inject.Inject;
 
 @ApplicationScoped
 public class TripMessageProcessor {
